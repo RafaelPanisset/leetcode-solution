@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/largest-number/
+//Time: o(n log n)
+//Space: o(n)
+
+class Solution {
+public:
+    static bool compare(const string& s1, const string& s2) {
+        return s1 + s2 > s2 + s1;
+    }
+
+    string largestNumber(vector<int>& nums) {
+        int n = nums.size();
+        vector<string> stValues(n);
+        for (int i = 0; i < n; i++) {
+            stValues[i] = to_string(nums[i]);
+        }
+        sort(stValues.begin(), stValues.end(), compare);
+        string ans;
+        for (auto it : stValues)
+            ans += it;
+        return ans[0] == '0' ? "0" : ans;
+    }
+};
