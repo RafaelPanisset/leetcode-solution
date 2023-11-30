@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/description/
+//Time: o(n log n)
+//Space: o(n)
+
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        map<int, int> mp;
+        for (auto &it : nums) {
+            mp[it]++;
+        }
+        int i = 0;
+        for (auto &it : mp) { 
+            if (it.second > 1) {
+                nums[i] = it.first;
+                i++;
+                nums[i] = it.first;
+                i++;
+            }
+            else {
+                nums[i] = it.first;
+                i++;
+            }
+        }
+        return i;
+    }
+};
