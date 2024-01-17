@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/find-beautiful-indices-in-the-given-array-i/
+//Time: o(n²)
+//Space: o(n)
+ vector<int> beautifulIndices(string s, string a, string b, int k) {
+        vector<int> idx1, idx2, ans;
+        int n = s.size(), m = a.size(), z = b.size();
+        
+        for (int i = 0; i <= n - m; i++) {
+            if (s[i] == a[0] && s.substr(i, m) == a) {
+                idx1.push_back(i);
+            }
+        }
+        
+        for (int i = 0; i <= n - z; i++) {
+            if (s[i] == b[0] && s.substr(i, z) == b) {
+                idx2.push_back(i);
+            }
+        }
+        
+        for (auto it1 : idx1) {
+            for (auto it2 : idx2) {
+                if (abs(it1 - it2) <= k) {
+                    ans.push_back(it1);
+                    break;
+                }
+            }
+        }
+    
+        return ans;
+}
