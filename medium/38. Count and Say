@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/count-and-say/description/
+//Time: O(n * m)
+//Space: O(m)
+class Solution {
+public:
+    string countAndSay(int n) {
+        string s = "1";
+        for (int i = 1; i < n; i++) {
+            string temp = "";
+            int m = s.size();
+            for (int j = 0; j < m;) {
+                int k = j, cnt = 0;
+                while (k < m && s[j] == s[k]) {
+                    k++;
+                    cnt++;
+                }
+                temp += to_string(cnt);
+                temp += s[j];
+                j = k;
+            }    
+            s = temp;
+        }
+        return s;
+    }
+};
